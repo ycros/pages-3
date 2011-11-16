@@ -12,9 +12,9 @@ public class MusicalScheduler {
     private int ppq = 96;
     private int bpm = 120;
     private long tickNanoseconds = 0;
-    private Set<Task> tasks = new HashSet<Task>();
-    private Queue<Task> tasksToAdd = new LinkedList<Task>();
-    private Queue<Task> tasksToDelete = new LinkedList<Task>();
+    private final Set<Task> tasks = new HashSet<Task>();
+    private final Queue<Task> tasksToAdd = new LinkedList<Task>();
+    private final Queue<Task> tasksToDelete = new LinkedList<Task>();
 
     private static MusicalScheduler instance;
 
@@ -73,8 +73,8 @@ public class MusicalScheduler {
     }
 
     public class Task {
-        private Closure closure;
-        private MusicalDuration duration;
+        private final Closure closure;
+        private final MusicalDuration duration;
         int ticks = 0;
 
         private Task(Closure closure, MusicalDuration duration) {

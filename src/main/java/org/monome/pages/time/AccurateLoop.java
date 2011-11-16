@@ -12,7 +12,7 @@ public abstract class AccurateLoop {
 
     private boolean running = false;
 
-    public AccurateLoop() {
+    AccurateLoop() {
     }
 
     public void run() {
@@ -56,7 +56,7 @@ public abstract class AccurateLoop {
                     stats.addValue(delta);
                 }
             }
-        } catch (InterruptedException ex) {
+        } catch (InterruptedException ignored) {
         }
     }
 
@@ -72,7 +72,7 @@ public abstract class AccurateLoop {
     private static long SPIN_YIELD_PRECISION = TimeUnit.MILLISECONDS.toNanos(2);
     private static boolean performanceHasBeenAdjusted = false;
 
-    protected static void sleepNanos (long nanoDuration) throws InterruptedException {
+    private static void sleepNanos(long nanoDuration) throws InterruptedException {
         final long end = System.nanoTime() + nanoDuration;
         long timeLeft = nanoDuration;
         do {
@@ -114,13 +114,13 @@ public abstract class AccurateLoop {
         return statistics;
     }
 
-    public static void adjustForSystemPerformance() {
+    private static void adjustForSystemPerformance() {
         Logger logger = LoggerFactory.getLogger(AccurateLoop.class);
         logger.info("Adjusting timing for system performance...");
 
         // Find best sleep duration performance
         {
-            long sleepDurationMicroseconds = 0;
+            long sleepDurationMicroseconds;
             StatisticalSummary stats = measurePrecisionInMicroseconds(1);
 
             sleepDurationMicroseconds = Math.round(stats.getMean() + stats.getStandardDeviation()*2);
@@ -137,6 +137,8 @@ public abstract class AccurateLoop {
         }
 
         logger.info("New timing precisions: sleep: {}µs, spin: {}.µs", SLEEP_PRECISION/1000, SPIN_YIELD_PRECISION/1000);
+
+        performanceHasBeenAdjusted = true;
     }
 
 }

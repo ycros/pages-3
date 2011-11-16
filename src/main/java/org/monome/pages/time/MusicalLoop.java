@@ -17,9 +17,6 @@ public class MusicalLoop extends AccurateLoop {
         this.musicalScheduler = musicalScheduler;
     }
 
-    int count = 0;
-    SummaryStatistics stats = new SummaryStatistics();
-
     @Override
     protected void runTick(long delta) {
         // TODO: Work the ticks off system org.monome.pages.time, not aligned to this loop, to prevent drifting

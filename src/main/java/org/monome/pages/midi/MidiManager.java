@@ -15,16 +15,15 @@ public class MidiManager {
         return instance;
     }
 
-    private Synthesizer synthesizer;
     private MidiChannel channel;
 
     private MidiManager() {
         try {
-            synthesizer = MidiSystem.getSynthesizer();
+            Synthesizer synthesizer = MidiSystem.getSynthesizer();
             synthesizer.open();
             channel = synthesizer.getChannels()[0];
         } catch (MidiUnavailableException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
     }
 

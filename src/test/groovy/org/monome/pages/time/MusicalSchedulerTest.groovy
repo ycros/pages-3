@@ -148,7 +148,6 @@ class MusicalSchedulerTest extends Specification {
 
     def "make sure we're protected against concurrent modifications"() {
         def ms = new MusicalScheduler()
-        def a = 0
         ms.setPpq(4)
 
         def task = null
