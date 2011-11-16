@@ -6,8 +6,8 @@ import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
 import org.codehaus.groovy.control.CompilerConfiguration;
+import org.monome.pages.groovy.ScriptBase;
 import org.monome.pages.time.MusicalLoop;
-import sun.org.mozilla.javascript.internal.Script;
 
 import java.io.IOException;
 

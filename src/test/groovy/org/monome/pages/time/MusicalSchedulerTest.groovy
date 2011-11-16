@@ -146,4 +146,24 @@ class MusicalSchedulerTest extends Specification {
         a == 2
     }
 
+    def "make sure we're protected against concurrent modifications"() {
+        def ms = new MusicalScheduler()
+        def a = 0
+        ms.setPpq(4)
+
+        def task = null
+        task = ms.schedule(new MusicalDuration(1, 4)) {
+            task.stop()
+        }
+
+        def task2 = null
+        task2 = ms.schedule(new MusicalDuration(1, 4)) {
+            task2.stop()
+        }
+
+        expect: "when we tick, no exception occurs"
+        ms.tick()
+        ms.tick()
+    }
+
 }

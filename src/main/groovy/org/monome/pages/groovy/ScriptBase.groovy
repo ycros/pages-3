@@ -1,4 +1,4 @@
-package org.monome.pages
+package org.monome.pages.groovy
 
 import org.monome.pages.time.MusicalDuration
 import org.monome.pages.time.MusicalScheduler

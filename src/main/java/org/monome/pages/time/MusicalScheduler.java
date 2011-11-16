@@ -52,13 +52,14 @@ public class MusicalScheduler {
     }
 
     public void tick() {
-        for (Task t : tasks) {
-            t.tick();
-        }
         tasks.removeAll(tasksToDelete);
         tasksToDelete.clear();
         tasks.addAll(tasksToAdd);
         tasksToAdd.clear();
+
+        for (Task t : tasks) {
+            t.tick();
+        }
     }
 
     public Task schedule(MusicalDuration every, Closure closure) {
